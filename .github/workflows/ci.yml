@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  flutter-check:
+    name: Check & Test (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Static analysis
+        run: flutter analyze
+
+      - name: Run unit & widget tests
+        run: flutter test --coverage
+
+      - name: Build APK (Android)
+        run: flutter build apk --debug
+
+  build-windows:
+    name: Build Windows
+    runs-on: windows-latest
+    needs: flutter-check
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Windows EXE
+        run: flutter build windows --debug
+
+  build-ios:
+    name: Build iOS
+    runs-on: macos-latest
+    needs: flutter-check
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build iOS simulator app
+        run: flutter build ios --simulator --no-codesign

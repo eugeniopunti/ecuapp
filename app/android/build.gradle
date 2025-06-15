@@ -1,3 +1,17 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Subimos AGP a 8.1.0 para que compileSdk 35 sea válido
+        classpath "com.android.tools.build:gradle:8.1.0"
+
+        // También actualizamos el plugin de Kotlin a >=1.8.10
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10"
+    }
+}
+
 allprojects {
     repositories {
         google()

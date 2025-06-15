@@ -1,4 +1,5 @@
 # app
+[![CI](https://github.com/eugeniopunti/ecuapp/workflows/CI/badge.svg)](https://github.com/eugeniopunti/ecuapp/actions)
 
 A new Flutter project.
 

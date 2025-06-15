@@ -5,7 +5,7 @@
 
 ## Descripción
 
-Aplicación Flutter multiplataforma para monitoreo en tiempo real de una ECU embebida via Bluetooth (Classic & BLE). Permite visualizar datos como RPM, AFR, MAP y TPS con gauges y gráficos.
+Aplicación Flutter multiplataforma para monitoreo en tiempo real de una ECU embebida via Bluetooth (Classic & BLE). Permite visualizar datos como RPM, AFR, MAP y TPS con gauges y gráficos. 
 
 ## Arquitectura del proyecto
 

@@ -8,6 +8,7 @@ on:
 
 jobs:
   flutter-check:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -35,6 +36,7 @@ jobs:
         run: flutter build apk --debug
 
   build-windows:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: windows-latest
     needs: flutter-check
     steps:
@@ -50,6 +52,7 @@ jobs:
         run: flutter build windows --debug
 
   build-ios:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: macos-latest
     needs: flutter-check
     steps:

@@ -8,7 +8,6 @@ on:
 
 jobs:
   flutter-check:
-    name: Check & Test (Ubuntu)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -20,19 +19,22 @@ jobs:
           channel: stable
 
       - name: Install dependencies
+        working-directory: app
         run: flutter pub get
 
       - name: Static analysis
+        working-directory: app
         run: flutter analyze
 
       - name: Run unit & widget tests
+        working-directory: app
         run: flutter test --coverage
 
       - name: Build APK (Android)
+        working-directory: app
         run: flutter build apk --debug
 
   build-windows:
-    name: Build Windows
     runs-on: windows-latest
     needs: flutter-check
     steps:
@@ -43,14 +45,11 @@ jobs:
         with:
           channel: stable
 
-      - name: Install dependencies
-        run: flutter pub get
-
       - name: Build Windows EXE
+        working-directory: app
         run: flutter build windows --debug
 
   build-ios:
-    name: Build iOS
     runs-on: macos-latest
     needs: flutter-check
     steps:
@@ -61,8 +60,6 @@ jobs:
         with:
           channel: stable
 
-      - name: Install dependencies
-        run: flutter pub get
-
       - name: Build iOS simulator app
+        working-directory: app
         run: flutter build ios --simulator --no-codesign
